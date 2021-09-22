@@ -27,7 +27,7 @@ This behavior is preferred by some users, mostly since the chart gives real-time
 
 For alternate approach with _scrolling data appending_, see our [scrolling heatmap example](https://www.arction.com/lightningchart-js-interactive-examples/examples/lcjs-example-0803-scrollingHeatmap.html).
 
-Scrolling approach is generally encouraged since it interacts much nicer with _scrolling Axis ticks_, which as can be seen from the scrolling heatmap example looks really nice with _live data_.
+Scrolling approach is generally encouraged since it interacts much nicer with _scrolling Axis ticks_, which as can be seen from the scrolling heatmap example - looks really nice with _live data_!
 
 Performance-wise there is not much difference between the two - both operations are optimized to the maximum!
 
@@ -66,7 +66,7 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © Arction Ltd 2009-2020. All rights reserved.
 
 
-[Scrolling Heatmap Grid Series]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/
+[Scrolling Heatmap Grid Series]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/classes/heatmapscrollinggridseriesintensityvalues.html
 [Paletted Fill Style]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/classes/palettedfill.html
 [Color lookup table]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/classes/lut.html
 [Color factory HSV]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/globals.html#colorhsv

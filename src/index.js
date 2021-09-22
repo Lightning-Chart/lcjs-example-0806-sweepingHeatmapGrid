@@ -12,6 +12,8 @@ const {
   ColorHSV,
   emptyLine,
   LegendBoxBuilders,
+  LinearGradientFill,
+  ColorRGBA,
   Themes,
 } = lcjs;
 
@@ -49,15 +51,27 @@ chart
   .setTitle("Frequency (Hz)")
   .setInterval(0, dataSampleSize, false, true);
 
+// Create heatmap series.
 const heatmapGridSeries = chart
   .addHeatmapGridSeries({
-    // +1 extra column is added to heatmap to prevent input data overflow.
-    columns: sweepingHistory + 1,
+    columns: sweepingHistory,
     rows: dataSampleSize,
   })
   .setFillStyle(paletteFill)
   .setWireframeStyle(emptyLine)
   .setMouseInteractions(false);
+
+// Create Band for visualizing sweeping update.
+const band = chart.getDefaultAxisX().addBand(true)
+  .setStrokeStyle(emptyLine)
+  .setFillStyle(new LinearGradientFill({
+    angle: 90,
+    stops: [
+      {offset: 0, color: ColorRGBA(0, 0, 0, 255)},
+      {offset: 1, color: ColorRGBA(0, 0, 0, 0)}
+    ]
+  }))
+  .setMouseInteractions(false)
 
 // Add LegendBox to chart.
 const legend = chart
@@ -67,12 +81,11 @@ const legend = chart
       type: 'max-width',
       maxWidth: 0.80,
   })
-  .add(chart);
+  .add(heatmapGridSeries);
 
 // Stream in sweeping data.
 let iSample = 0;
 let dataAmount = 0;
-const sweepBufferIntensityValues = new Array(dataSampleSize).fill(0);
 createSpectrumDataGenerator()
   .setSampleSize(dataSampleSize)
   // NOTE: Number of unique samples in example data.
@@ -91,8 +104,12 @@ createSpectrumDataGenerator()
     heatmapGridSeries.invalidateIntensityValues({
       iColumn: iSample % sweepingHistory,
       iRow: 0,
-      values: [sample, sweepBufferIntensityValues],
+      values: [sample],
     });
+
+    band
+      .setValueStart(iSample % sweepingHistory)
+      .setValueEnd(band.getValueStart() + 10)
 
     dataAmount += sample.length;
     iSample += 1;
