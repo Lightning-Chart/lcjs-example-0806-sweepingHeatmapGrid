@@ -2,7 +2,7 @@
  * LightningChartJS example that showcases simple usage of Scrolling Heatmap Grid Series.
  */
 // Import LightningChartJS
-const lcjs = require('@arction/lcjs')
+const lcjs = require('@lightningchart/lcjs')
 
 // Extract required parts from LightningChartJS.
 const {
@@ -18,7 +18,7 @@ const {
     Themes,
 } = lcjs
 
-const { createSpectrumDataGenerator } = require('@arction/xydata')
+const { createSpectrumDataGenerator } = require('@lightningchart/xydata')
 
 // Length of single data sample.
 const dataSampleSize = 1000
@@ -34,7 +34,7 @@ const chart = lightningChart({
     })
     .setTitle('Sweeping Heatmap Spectrogram')
 
-chart.getDefaultAxisY().setTitle('Frequency (Hz)').setInterval({ start: 0, end: dataSampleSize })
+chart.getDefaultAxisY().setTitle('Frequency').setUnits('Hz').setInterval({ start: 0, end: dataSampleSize })
 
 // Setup PalettedFill for dynamically coloring Heatmap by Intensity values.
 const theme = chart.getTheme()
@@ -68,6 +68,7 @@ const band = chart
             ],
         }),
     )
+    .setMouseInteractions(false)
 
 // Add LegendBox to chart.
 const legend = chart
