@@ -68,7 +68,7 @@ const band = chart
             ],
         }),
     )
-    .setMouseInteractions(false)
+    .setPointerEvents(false)
 
 // Add LegendBox to chart.
 const legend = chart
