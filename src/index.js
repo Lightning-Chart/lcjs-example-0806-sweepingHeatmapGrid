@@ -11,7 +11,6 @@ const {
     LUT,
     ColorHSV,
     emptyLine,
-    LegendBoxBuilders,
     LinearGradientFill,
     ColorRGBA,
     regularColorSteps,
@@ -69,16 +68,6 @@ const band = chart
         }),
     )
     .setPointerEvents(false)
-
-// Add LegendBox to chart.
-const legend = chart
-    .addLegendBox(LegendBoxBuilders.HorizontalLegendBox)
-    // Dispose example UI elements automatically if they take too much space. This is to avoid bad UI on mobile / etc. devices.
-    .setAutoDispose({
-        type: 'max-width',
-        maxWidth: 0.8,
-    })
-    .add(heatmapGridSeries)
 
 // Stream in sweeping data.
 let iSample = 0
